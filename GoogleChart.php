@@ -116,7 +116,7 @@ class GoogleChart extends Widget
 
         $view = $this->getView();
         $view->registerJsFile('https://www.google.com/jsapi',['position' => View::POS_HEAD]);
-        $url = 'https://maps.googleapis.com/maps/api';
+        $url = 'https://maps.googleapis.com/maps/api/js';
         if(isset($this->apiKey) && strlen($this->apiKey) > 1)
             $url .= "?key=" . $this->apiKey;
         $view->registerJsFile($url,['position' => View::POS_HEAD]);
