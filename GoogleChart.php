@@ -63,6 +63,11 @@ class GoogleChart extends Widget
      */
     public $htmlOptions = array();
 
+    /**
+     * @var string $apiKey google maps api key
+     */
+    public $apiKey = '';
+
     public function init()
     {
         parent::init();
@@ -111,6 +116,10 @@ class GoogleChart extends Widget
 
         $view = $this->getView();
         $view->registerJsFile('https://www.google.com/jsapi',['position' => View::POS_HEAD]);
+        $url = 'https://maps.googleapis.com/maps/api';
+        if(isset($this->apiKey) && strlen($this->apiKey) > 1)
+            $url .= "key=$apiKey"
+        $view->registerJsFile(url,['position' => View::POS_HEAD]);
         $view->registerJs('google.load("visualization", "' . $this->loadVersion . '", {packages:["' . $this->packages . '"]});', View::POS_HEAD, __CLASS__ . '#' . $id);
         $view->registerJs($script, View::POS_HEAD, $id);
     }
